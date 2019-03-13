@@ -414,7 +414,7 @@
                         "name": "ipconfig1",
                         "properties": {
                             "subnet": {
-                                "id": "[variables('subnet3Ref')]"
+                                "id": "[variables('subnet1Ref')]"
                             },
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIpAddress": {
