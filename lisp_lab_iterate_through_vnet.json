@@ -34,8 +34,7 @@
                         "vnetName": "azure-vnet1",
                         "vnetPrefix": "10.100.0.0/16",
                         "Outside": "10.100.210.0/24",
-                        "Inside": "10.100.101.0/24",
-			            "Extended": "10.100.100.0/24", 
+                        "Inside": "10.100.100.0/24",
                         "vmName": "azure-vm1",
                         "nvaName": "azure-pxtr1"
                     }
@@ -103,8 +102,6 @@
                     "subnet1Prefix": {"value": "[parameters('config')['vnets'][1]['Inside']]"},
                     "subnet2Name": {"value": "Outside"},
                     "subnet2Prefix": {"value": "[parameters('config')['vnets'][1]['Outside']]"},
-					"subnet3Name": {"value": "TestSubnet"},
-                    "subnet3Prefix": {"value": "[parameters('config')['vnets'][1]['Extended']]"},
                     "nvaName": {"value": "[parameters('config')['vnets'][1]['nvaName']]"},
                     "nvaSize": {"value": "Standard_D2_v2"},
 					"vmName": {"value": "[parameters('config')['vnets'][1]['vmName']]"},
