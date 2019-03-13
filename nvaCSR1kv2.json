@@ -198,7 +198,7 @@
                         "name": "ipconfig1",
                         "properties": {
                             "subnet": {
-                                "id": "[variables('subnet2Ref')]"
+                                "id": "[variables('subnet1Ref')]"
                             },
 							"primary": true,
                             "privateIPAddressVersion": "IPv4",
@@ -236,7 +236,7 @@
                         "name": "ipconfig2",
                         "properties": {
                             "subnet": {
-                                "id": "[variables('subnet1Ref')]"
+                                "id": "[variables('subnet2Ref')]"
                             },
 							"primary": false,
                             "privateIPAddressVersion": "IPv4",
@@ -387,7 +387,7 @@
                         "name": "ipconfig1",
                         "properties": {
                             "subnet": {
-                                "id": "[variables('subnet2Ref')]"
+                                "id": "[variables('subnet1Ref')]"
                             },
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIpAddress": {
