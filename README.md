@@ -4,7 +4,12 @@
 
 
 
-![alt text](https://github.com/jgmitter/images/blob/master/Capture.png)
+
+
+
+
+
+
 
 
 # Contributing
