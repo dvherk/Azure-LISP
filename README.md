@@ -6,7 +6,7 @@
 
 
 
-![alt text](https://github.com/jgmitter/images/blob/master/VisioImage2.png)
+![alt text](https://github.com/jgmitter/images/blob/master/Capture.PNG)
 
 
 
