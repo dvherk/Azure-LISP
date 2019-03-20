@@ -2,6 +2,7 @@
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
+![alt text](https://github.com/jgmitter/images/blob/master/Capture.png)
 
 # Contributing
 
