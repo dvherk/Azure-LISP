@@ -2,10 +2,6 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "resourceLocation": {
-            "defaultValue": "northeurope",
-            "type":"string"
-        },
         "vnetName": {
             "defaultValue": "myVnet",
             "type": "string"
@@ -71,6 +67,8 @@
         }
     },
     "variables": {
+        "resourceLocation": {
+        "resourceLocation": "northeurope",
         "networkApiVersion": "2018-04-01",
         "computeApiVersion": "2018-06-01",
         "storageApiVersion": "2018-07-01",
@@ -169,7 +167,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[parameters('vnetName')]",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -205,7 +203,7 @@
             "name": "[variables('storageName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "[variables('storageApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {},
             "kind": "[variables('diagnosticsStorageAccountKind')]",
             "sku": {
@@ -218,7 +216,7 @@
             "name": "[variables('nvaNic1Name')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "dependsOn": [
                 "[variables('nvaNsgName')]",
                 "[variables('nvaPipName')]",
@@ -257,7 +255,7 @@
             "name": "[variables('nvaNic2Name')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "dependsOn": [
                 "[variables('nvaNsgName')]",
                 "[parameters('vnetName')]"
@@ -292,7 +290,7 @@
             "name": "[variables('nvaNsgName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {
                 "securityRules": "[variables('nvaNsgRules')]"
             },
@@ -303,7 +301,7 @@
             "name": "[variables('nvaPipName')]",
             "type": "Microsoft.Network/publicIpAddresses",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {
                 "publicIpAllocationMethod": "[variables('pipType')]"
             },
@@ -317,7 +315,7 @@
             "name": "[parameters('nvaName')]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "[variables('computeApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "dependsOn": [
                 "[variables('nvaNic1Name')]",
                 "[variables('nvaNic2Name')]",
@@ -381,7 +379,7 @@
             "name": "[concat('shutdown-computevm-', parameters('nvaName'))]",
             "type": "Microsoft.DevTestLab/schedules",
             "apiVersion": "2017-04-26-preview",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', parameters('nvaName'))]"
             ],
@@ -406,7 +404,7 @@
             "name": "[variables('vm1NicName')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "dependsOn": [
                 "[variables('vm1NsgName')]",
                 "[variables('vm1PipName')]",
@@ -438,7 +436,7 @@
             "name": "[variables('vm2NicName')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "dependsOn": [
                 "[variables('vm2NsgName')]",
                 "[variables('vm2PipName')]",
@@ -470,7 +468,7 @@
             "name": "[variables('vm1NsgName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {
                 "securityRules": "[variables('vmNsgRules')]"
             },
@@ -481,7 +479,7 @@
             "name": "[variables('vm2NsgName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {
                 "securityRules": "[variables('vmNsgRules')]"
             },
@@ -492,7 +490,7 @@
             "name": "[variables('vm1PipName')]",
             "type": "Microsoft.Network/publicIpAddresses",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {
                 "publicIpAllocationMethod": "[variables('pipType')]"
             },
@@ -506,7 +504,7 @@
             "name": "[variables('vm2PipName')]",
             "type": "Microsoft.Network/publicIpAddresses",
             "apiVersion": "[variables('networkApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {
                 "publicIpAllocationMethod": "[variables('pipType')]"
             },
@@ -520,7 +518,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('vm1Name')]",
             "apiVersion": "[variables('computeApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "[parameters('vm1Size')]"
@@ -574,7 +572,7 @@
             "name": "[concat('shutdown-computevm-', parameters('vm1Name'))]",
             "type": "Microsoft.DevTestLab/schedules",
             "apiVersion": "2017-04-26-preview",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', parameters('vm1Name'))]"
             ],
@@ -599,7 +597,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('vm2Name')]",
             "apiVersion": "[variables('computeApiVersion')]",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "[parameters('vm2Size')]"
@@ -653,7 +651,7 @@
             "name": "[concat('shutdown-computevm-', parameters('vm2Name'))]",
             "type": "Microsoft.DevTestLab/schedules",
             "apiVersion": "2017-04-26-preview",
-            "location": "[parameters('resourceLocation')]",
+            "location": "[variables('resourceLocation')]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', parameters('vm2Name'))]"
             ],
@@ -678,7 +676,7 @@
 			"type": "Microsoft.Compute/virtualMachines/extensions",
 			"name": "[concat(parameters('vm1Name'), '/installcustomscript')]",
 			"apiVersion": "[variables('computeApiVersion')]",
-			"location": "[parameters('resourceLocation')]",
+			"location": "[variables('resourceLocation')]",
 			"properties": {
 				"publisher": "Microsoft.Azure.Extensions",
 				"type": "CustomScript",
@@ -700,7 +698,7 @@
 			"type": "Microsoft.Compute/virtualMachines/extensions",
 			"name": "[concat(parameters('vm2Name'), '/installcustomscript')]",
 			"apiVersion": "[variables('computeApiVersion')]",
-			"location": "[parameters('resourceLocation')]",
+			"location": "[variables('resourceLocation')]",
 			"properties": {
 				"publisher": "Microsoft.Azure.Extensions",
 				"type": "CustomScript",
