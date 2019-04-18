@@ -21,22 +21,22 @@
             "defaultValue": {
                 "vnets": [
                     {
-                        "vnetName": "onprem",
+                        "vnetName": "onprem-vnet",
                         "vnetPrefix": "10.100.0.0/16",
                         "TestSubnet": "10.100.0.0/24",
                         "Outside": "10.100.200.0/24",
 			            "Inside": "10.100.100.0/24",
                         "vm1Name": "onprem-vm",
-            		"vm2Name": "LISP-TestVM",
+            		    "vm2Name": "LISP-TestVM",
                         "nvaName": "onprem-pxtr"
                     },
                     {
-                        "vnetName": "azure-vnet1",
+                        "vnetName": "azure-vnet",
                         "vnetPrefix": "10.100.0.0/16",
                         "Outside": "10.100.210.0/24",
                         "Inside": "10.100.100.0/24",
-                        "vmName": "azure-vm1",
-                        "nvaName": "azure-pxtr1"
+                        "vmName": "azure-vm",
+                        "nvaName": "azure-pxtr"
                     }
                 ]
             }
@@ -45,13 +45,13 @@
     "variables": {
         "networkApiVersion": "2018-08-01",
         "deploymentApiVersion": "2017-05-10",
-        "nvaTemplateUrl1": "[uri(deployment().properties.templateLink.uri, 'nvaCSR1kv.json')]",
-        "nvaTemplateUrl2": "[uri(deployment().properties.templateLink.uri, 'nvaCSR1kv2.json')]"
+        "nvaTemplateUrl1": "[uri(deployment().properties.templateLink.uri, 'nvaCSR1k-onprem.json')]",
+        "nvaTemplateUrl2": "[uri(deployment().properties.templateLink.uri, 'nvaCSR1k-azure.json')]"
     },
     "resources": [
 		{
-			"comments": "Simulate a number of vnets, each including two subnets, an Ubuntu VM and a CSR 1Kv NVA",
-			"name": "TEST",
+			"comments": "Simulate a number of 'on-prem' vnets, each including three subnets, an Ubuntu VM and a CSR 1Kv NVA",
+			"name": "LISP-OnPrem",
             "type": "Microsoft.Resources/deployments",
 			"apiVersion": "[variables('deploymentApiVersion')]",
 			"properties": {
@@ -72,7 +72,7 @@
                     "subnet3Name": {"value": "TestSubnet"},
                     "subnet3Prefix": {"value": "[parameters('config')['vnets'][0]['TestSubnet']]"},
                     "nvaName": {"value": "[parameters('config')['vnets'][0]['nvaName']]"},
-                    "nvaSize": {"value": "Standard_D2_v2"},
+                    "nvaSize": {"value": "Standard_D2_v3"},
                     "vm1Name": {"value": "[parameters('config')['vnets'][0]['vm1Name']]"},
                     "vm1Size": {"value": "Standard_B1s"},
                     "vm2Name": {"value": "[parameters('config')['vnets'][0]['vm2Name']]"},
@@ -83,8 +83,8 @@
             ]
         },
 {
-			"comments": "Simulate a number of vnets, each including two subnets, an Ubuntu VM and a CSR 1Kv NVA",
-			"name": "TEST2",
+			"comments": "Simulate a number of vnets in 'Azure', each including two subnets, an Ubuntu VM and a CSR 1Kv NVA",
+			"name": "LISP-Azure",
             "type": "Microsoft.Resources/deployments",
 			"apiVersion": "[variables('deploymentApiVersion')]",
 			"properties": {
@@ -103,8 +103,8 @@
                     "subnet2Name": {"value": "Outside"},
                     "subnet2Prefix": {"value": "[parameters('config')['vnets'][1]['Outside']]"},
                     "nvaName": {"value": "[parameters('config')['vnets'][1]['nvaName']]"},
-                    "nvaSize": {"value": "Standard_D2_v2"},
-		    "vmName": {"value": "[parameters('config')['vnets'][1]['vmName']]"},
+                    "nvaSize": {"value": "Standard_D2_v3"},
+		            "vmName": {"value": "[parameters('config')['vnets'][1]['vmName']]"},
                     "vmSize": {"value": "Standard_B1s"}
                 }
             },
