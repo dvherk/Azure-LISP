@@ -127,7 +127,7 @@
         "autoShutdownTimeZone": "Eastern Standard Time",
         "autoShutdownNotificationStatus": "Disabled",
         "autoShutdownNotificationLocale": "en",
-        "storageName": "[toLower(concat(uniqueString(resourceGroup().id), 'diag'))]",
+        "storageName": "[toLower(concat(uniqueString(resourceGroup().location), 'diag'))]",
         "storageId": "[resourceId(resourceGroup().name, 'Microsoft.Storage/storageAccounts', variables('storageName'))]",
         "diagnosticsStorageAccountName": "[variables('storageName')]",
         "diagnosticsStorageAccountId": "[variables('storageId')]",
