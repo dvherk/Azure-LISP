@@ -82,7 +82,7 @@
             "dependsOn": [
             ]
         },
-{
+        {       
 			"comments": "Simulate a number of vnets in 'Azure', each including two subnets, an Ubuntu VM and a CSR 1Kv NVA",
 			"name": "LISP-Azure",
             "type": "Microsoft.Resources/deployments",

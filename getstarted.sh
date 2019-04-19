@@ -3,6 +3,7 @@ url=https://raw.githubusercontent.com/dvherk/Azure-LISP/master/lisp_lab_iterate_
 
 rg=LISPdemo
 az group create -n $rg -l westeurope
+az vm image accept-terms --urn cisco:cisco-csr-1000v:16_9-byol:16.9.120180924
 az group deployment create -g $rg --template-uri $url --parameters '{"adminPassword":{"value":"Msft123Msft123"}}'
 
 # Check Public IP addresses
