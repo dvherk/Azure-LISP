@@ -1,5 +1,5 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "adminUsername": {
@@ -43,8 +43,8 @@
         }
     },
     "variables": {
-        "networkApiVersion": "2018-08-01",
-        "deploymentApiVersion": "2017-05-10",
+        "networkApiVersion": "2019-02-01",
+        "deploymentApiVersion": "2018-11-01",
         "nvaTemplateUrl1": "[uri(deployment().properties.templateLink.uri, 'nvaCSR1k-onprem.json')]",
         "nvaTemplateUrl2": "[uri(deployment().properties.templateLink.uri, 'nvaCSR1k-azure.json')]"
     },
