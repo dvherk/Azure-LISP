@@ -69,9 +69,9 @@
     "variables": {
         "resourceLocation": {
         "resourceLocation": "northeurope",
-        "networkApiVersion": "2018-04-01",
-        "computeApiVersion": "2018-06-01",
-        "storageApiVersion": "2018-07-01",
+        "networkApiVersion": "2018-12-01",
+        "computeApiVersion": "2018-10-01",
+        "storageApiVersion": "2018-11-01",
         "nvaPipName": "[concat(parameters('nvaName'), '-pip')]",
         "vm1PipName": "[concat(parameters('vm1Name'), '-pip1')]",
 		"vm2PipName": "[concat(parameters('vm2Name'), '-pip2')]",
